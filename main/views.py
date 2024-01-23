@@ -18,7 +18,7 @@ def index(request, id):
     """
     # Retrieve the ToDoList with the specified id
     ls = ToDoList.objects.get(id=id)
-
+    
     # Check if the logged-in user has access to this specific list
     if ls not in request.user.todolist.all():
         return render(request, "main/list.html", {"ls": ls, "user_authenticated": request.user.is_authenticated})
