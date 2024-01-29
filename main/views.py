@@ -22,17 +22,25 @@ def index(request, id):
     # Check if the logged-in user has access to this specific list
     if ls not in request.user.todolist.all():
         return render(request, "main/list.html", {"ls": ls, "user_authenticated": request.user.is_authenticated})
-    print(request.POST.get("newItem"))
     if request.method == "POST":
         # Process form submissions
-        if request.POST.get("save"):
+        if request.POST.get("complete"):
             for item in ls.item_set.all():
                 # Update completion status of items based on user input
                 if request.POST.get("c" + str(item.id)) == "clicked":
-                    item.complete = True
+                    print(f'item:{item.text} completeed {item.complete}')
+                    item.complete = True    
                 else:
+                    print(f'item:{item.text} completeed {item.complete}')
                     item.complete = False
                 item.save()
+        # Process form submissions
+        elif request.POST.get("delete"):
+            for item in ls.item_set.all():
+                # Update completion status of items based on user input
+                if request.POST.get("c" + str(item.id)) == "clicked":
+                        item.delete()
+                    
         elif request.POST.get("newItem"):
             # Create a new item in the to-do list
             txt = request.POST.get("new")
