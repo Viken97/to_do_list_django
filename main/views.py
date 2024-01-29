@@ -28,11 +28,9 @@ def index(request, id):
             for item in ls.item_set.all():
                 # Update completion status of items based on user input
                 if request.POST.get("c" + str(item.id)) == "clicked":
-                    print(f'item:{item.text} completeed {item.complete}')
                     item.complete = True    
-                else:
-                    print(f'item:{item.text} completeed {item.complete}')
-                    item.complete = False
+                # else:
+                #     item.complete = False
                 item.save()
         # Process form submissions
         elif request.POST.get("delete"):
