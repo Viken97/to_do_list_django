@@ -15,46 +15,9 @@
       crossorigin="anonymous"
     />
 
-    <style type="text/css">
-      .sidenav {
-        height: 100%;
-        width: 160px;
-        position: fixed;
-        z-index: 1;
-        top: 0;
-        left: 0;
-        background-color: #111;
-        overflow-x: hidden;
-        padding-top: 20px;
-      }
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'main/style.css' %}" />
 
-      .sidenav a {
-        padding: 6px 8px 6px 16px;
-        text-decoration: none;
-        font-size: 20px;
-        color: #818181;
-        display: block;
-      }
-
-      .sidenav a:hover {
-        color: #f1f1f1;
-      }
-
-      .main {
-        margin-left: 160px;
-        padding: 0px 10px;
-      }
-
-      .login-logout-button {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-      }
-      .completed {
-        text-decoration: line-through; /* Add a line-through effect to the text */
-        color: #808080; /* Change text color to gray for completed items */
-      }
-    </style>
   </head>
   <body>
     <div class="sidenav">
