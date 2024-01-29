@@ -1,32 +1,62 @@
 {% extends 'main/base.html' %} {% block title%} Home Page {% endblock %}
+
 {% block content %}
-<p>Welcome to To Do's!</p>
 
-<p>
-  This is a simple to-do list application. You can create new to-do lists, add
-  items to these lists, mark items as finished, and more.
-</p>
+  {% if user.is_authenticated %}
+    <h1>Welcome back, {{ user.username }}!</h1>
 
-<h2>How to Use:</h2>
-<ol>
-  <li>
-    <strong>Create a New List:</strong> Click on "Create new list" in the
-    sidebar to create a new to-do list.
-  </li>
-  <li>
-    <strong>Add Items:</strong> After creating a list, you can add new items by
-    clicking on the list and using the input form.
-  </li>
-  <li>
-    <strong>Mark Items as Finished:</strong> Check the items you've completed to
-    mark them as finished.
-  </li>
-  <li>
-    <strong>View Lists:</strong> Click on "View lists" in the sidebar to see all
-    your to-do lists and their items.
-  </li>
-</ol>
+    <p>
+      It's great to see you again. Here's your personalized dashboard where you can manage your to-do lists and tasks.
+    </p>
 
-<p>Enjoy staying organized with your to-do lists!</p>
+    <h2>Quick Actions:</h2>
+    <ul>
+      <li>
+        <strong>Create a New List:</strong> Click on "Create new list" in the sidebar to start a new to-do list.
+      </li>
+      <li>
+        <strong>View Lists:</strong> Navigate to "View lists" in the sidebar to see all your to-do lists and their items.
+      </li>
+      <li>
+        <strong>Add Items:</strong> Simply click on a list to write the item name, and clikc Add Item.
+      </li>
+      <li>
+        <strong>Mark Items as Finished:</strong> Check the items you've completed to mark them as Complete.
+      </li>
+    </ul>
+
+    <p>Stay organized and productive!</p>
+
+  
+  {% else %}
+    <p>Welcome to To Do's!</p>
+
+    <p>
+      This is a simple to-do list application. You can create new to-do lists, add
+      items to these lists, mark items as finished, and more.
+    </p>
+
+    <h2>How to Use:</h2>
+    <ol>
+      <li>
+        <strong>Create a New List:</strong> Click on "Create new list" in the
+        sidebar to create a new to-do list.
+      </li>
+      <li>
+        <strong>Add Items:</strong> After creating a list, you can add new items by
+        clicking on the list and using the input form.
+      </li>
+      <li>
+        <strong>Mark Items as Finished:</strong> Check the items you've completed to
+        mark them as finished.
+      </li>
+      <li>
+        <strong>View Lists:</strong> Click on "View lists" in the sidebar to see all
+        your to-do lists and their items.
+      </li>
+    </ol>
+
+    <p>Enjoy staying organized with your to-do lists!</p>
+  {% endif %}
 
 {% endblock%}

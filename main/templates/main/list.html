@@ -12,7 +12,6 @@
                 <input type="checkbox" value="clicked" name="c{{ item.id }}" >
             </div>
         </div>
-        <!-- Add CSS class based on completion status -->
         
         <input type="text" value="{{ item.text }}" class="form-control {% if item.complete %}completed{% endif %}">
     </div>
