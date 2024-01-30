@@ -44,3 +44,22 @@
   color: #808080; /* Change text color to gray for completed items */
 }
 
+/* how the different lists are shown in the view url*/
+.lists {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.lists h5 {
+    margin-bottom: 5px;
+}
+
+.lists p {
+    margin-bottom: 5px;
+}
+
+.lists a {
+    color: #1f15e3
+}
