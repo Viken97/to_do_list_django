@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from .models import ToDoList
 from .forms import CreateNewList
@@ -91,7 +91,7 @@ def create(request):
     # Render the create to-do list template
     return render(request, "main/create.html", {"form": form, "user_authenticated": request.user.is_authenticated})
 
-def view(request):
+def view(request, id=None):
     """
     View for rendering the page displaying all to-do lists.
 
@@ -101,4 +101,30 @@ def view(request):
     Returns:
     - Rendered HTML template for viewing all to-do lists
     """
+      # Get the to-do list with the given id
+    if id != None:
+        try:
+            ls = ToDoList.objects.get(id=id)
+        except ToDoList.DoesNotExist:
+            # Handle the case where the to-do list doesn't exist
+            return redirect('home')  # Redirect to some appropriate URL
+        
+        # this might not be needed since the index view already handles users trying to access other peoples lists 
+        if ls not in request.user.todolist.all():       
+            return render(request, "main/view.html", {"user_authenticated": request.user.is_authenticated})
+
+
+        # Check if the request method is POST
+        if request.method == "POST":
+            # Check if the delete button is clicked
+            if request.POST.get("delete"):
+                # Check if the to-do list is empty
+                if ls.item_set.exists():
+                    # If the to-do list is not empty, do not delete it
+                    # You may want to add a message here to inform the user
+                    pass
+                else:
+                    # If the to-do list is empty, delete it
+                    ls.delete()
+
     return render(request, "main/view.html", {"user_authenticated": request.user.is_authenticated})
