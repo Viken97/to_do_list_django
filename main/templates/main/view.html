@@ -6,9 +6,16 @@
 
 {% block content %}
     {% if user.is_authenticated %}
-        {% for td in user.todolist.all %}
-            <p><a href="/{{td.id}}">{{td.name}}</a></p>
-        {% endfor %}
+         {% for td in user.todolist.all %}
+        <div class="lists">
+            <h5><a href="/{{ td.id }}">{{ td.name }}</a> Contains ({{ td.item_set.count }} items)</h5>
+            <form method="post" action="{% url 'view' td.id %}">
+                {% csrf_token %}
+                <input type="hidden" name="delete" value="{{ td.id }}">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+    {% endfor %}
     {% else %}
         <div class="alert alert-warning">
             <strong>Warning:</strong> You need to be logged in to view your lists. 
