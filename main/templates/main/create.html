@@ -1,25 +1,20 @@
-{% extends 'main/base.html' %} 
-{% block title %} Create New List {% endblock %}
-
-{% block content %}
-    {% if user.is_authenticated %}
-        <h3>Create List</h3>
-        <form method="post" action="/create/" class="form-group">
-          {% csrf_token %}
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <button type="submit" , name="save" class="btn btn-success">
-                Create New
-              </button>
-            </div>
-            {{form.name}}
-          </div>
-        </form>
-    {% else %}
-        <div class="alert alert-warning">
-            <strong>Warning:</strong> You need to be logged in to create a new list. 
-            <a href="/login">Login</a> or 
-            <a href="/register">register</a> an account.
-        </div>
-    {% endif %}
-{% endblock %}
+{% extends 'main/base.html' %} {% block title %} Create New List {% endblock %}
+{% block content %} {% if user.is_authenticated %}
+<h3>Create List</h3>
+<form method="post" action="/create/" class="form-group">
+  {% csrf_token %}
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <button type="submit" , name="save" class="btn btn-success">
+        Create New
+      </button>
+    </div>
+    {{form.name}}
+  </div>
+</form>
+{% else %}
+<div class="alert alert-warning">
+  <strong>Warning:</strong> You need to be logged in to create a new list.
+  <a href="/login">Login</a> or <a href="/register">register</a> an account.
+</div>
+{% endif %} {% endblock %}

@@ -107,7 +107,7 @@ def view(request, id=None):
             ls = ToDoList.objects.get(id=id)
         except ToDoList.DoesNotExist:
             # Handle the case where the to-do list doesn't exist
-            return redirect('home')  # Redirect to some appropriate URL
+            return redirect('view')  # Redirect to some appropriate URL
         
         # this might not be needed since the index view already handles users trying to access other peoples lists 
         if ls not in request.user.todolist.all():       
